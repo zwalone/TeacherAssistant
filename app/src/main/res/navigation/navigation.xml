@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/startMenu">
+
+    <fragment
+        android:id="@+id/startMenu"
+        android:name="com.example.teacherassistant.View.StartMenu"
+        android:label="fragment_start_menu"
+        tools:layout="@layout/fragment_start_menu" >
+        <action
+            android:id="@+id/action_startMenu_to_listCourses"
+            app:destination="@id/listCourses" />
+        <action
+            android:id="@+id/action_startMenu_to_listStudents"
+            app:destination="@id/listStudents" />
+        <action
+            android:id="@+id/action_startMenu_to_listGrades"
+            app:destination="@id/listGrades" />
+    </fragment>
+    <fragment
+        android:id="@+id/listCourses"
+        android:name="com.example.teacherassistant.View.ListCourses"
+        android:label="fragment_list_courses"
+        tools:layout="@layout/fragment_list_courses" />
+    <fragment
+        android:id="@+id/listStudents"
+        android:name="com.example.teacherassistant.View.ListStudents"
+        android:label="fragment_list_students"
+        tools:layout="@layout/fragment_list_students" >
+        <action
+            android:id="@+id/action_listStudents_to_studentAddEdit"
+            app:destination="@id/studentAddEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentAddEdit"
+        android:name="com.example.teacherassistant.View.StudentAddEdit"
+        android:label="fragment_student_add_edit"
+        tools:layout="@layout/fragment_student_add_edit" >
+        <action
+            android:id="@+id/action_studentAddEdit_to_listStudents"
+            app:destination="@id/listStudents" />
+    </fragment>
+    <fragment
+        android:id="@+id/listGrades"
+        android:name="com.example.teacherassistant.View.ListGrades"
+        android:label="fragment_list_grades"
+        tools:layout="@layout/fragment_list_grades" />
+</navigation>

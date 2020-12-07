@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">TeacherAssistant</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+    <!-- Start Menu-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="StartMenuTitle">Teacher Assisstant</string>
+    <string name="GTCoursesButton">Courses</string>
+    <string name="GTStudentsButton">Students</string>
+    <string name="GTRaportButton">Raport</string>
+
+    <!-- Add Edit Student -->
+    <string name="AEditStudentTextView">Custom your student</string>
+    <string name="NameStudentHint">Name</string>
+    <string name="SurnameStudentHint">Surname</string>
+
+    <!-- One row student list -->
+    <string name="ShowGradesStudentButton">Grades</string>
 </resources>

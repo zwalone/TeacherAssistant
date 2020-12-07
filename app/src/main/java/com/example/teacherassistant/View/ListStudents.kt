@@ -1,60 +1,67 @@
 package com.example.teacherassistant.View
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherassistant.Model.Student
 import com.example.teacherassistant.R
+import com.example.teacherassistant.ViewModel.Adapters.StudentListAdapter
+import com.example.teacherassistant.ViewModel.CallBackStudentInterface
+import com.example.teacherassistant.ViewModel.FragmentVM.StudentVM
+import kotlinx.android.synthetic.main.fragment_list_students.*
+import kotlinx.android.synthetic.main.fragment_list_students.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class ListStudents : Fragment(), CallBackStudentInterface {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListStudents.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ListStudents : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var mStudentVM: StudentVM
+    private lateinit var myAdapter: StudentListAdapter
+    private lateinit var myLayoutManager:LinearLayoutManager
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_students, container, false)
+        val view = inflater.inflate(R.layout.fragment_list_students, container, false)
+
+        mStudentVM = ViewModelProvider(requireActivity()).get(StudentVM::class.java)
+        myLayoutManager = LinearLayoutManager(context)
+        myAdapter = StudentListAdapter(mStudentVM.readAllStudents, this)
+
+        mStudentVM.readAllStudents.observe(viewLifecycleOwner, Observer { t->
+            myAdapter.notifyDataSetChanged()
+        })
+
+        view.RemoveStudentButton.setOnClickListener {
+            mStudentVM.removeStudent()
+        }
+
+        view.AEditStudentButton.setOnClickListener {
+            findNavController().navigate(R.id.action_listStudents_to_studentAddEdit)
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ListStudents.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ListStudents().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        recyclerView = RVStudentsList.apply {
+            this.layoutManager = myLayoutManager
+            this.adapter = myAdapter
+        }
+    }
+
+    override fun onStudentClick(student: Student) {
+        mStudentVM.currentStudent = student
+        Log.v("student", student.ids.toString())
     }
 }
