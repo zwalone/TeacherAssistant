@@ -3,23 +3,23 @@
 
     <!-- Start Menu-->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="StartMenuTitle">Teacher Assisstant</string>
+    <string name="StartMenuTitle"><b>Teacher Assisstant</b></string>
     <string name="GTCoursesButton">Courses</string>
     <string name="GTStudentsButton">Students</string>
     <string name="GTRaportButton">Raport</string>
 
     <!-- Add Edit Student -->
-    <string name="AEditStudentTextView">Custom your student</string>
+    <string name="AEditStudentTextView"><b>Custom your student</b></string>
     <string name="NameStudentHint">Name</string>
     <string name="SurnameStudentHint">Surname</string>
 
     <!--ADD Edit Course -->
-    <string name="AEditCourseTextView">Add / Edit course</string>
+    <string name="AEditCourseTextView"><b>Add / Edit course</b></string>
     <string name="NameCourseHit">course name</string>
 
     <!--ADD Grade  -->
-    <string name="GradeTextView">Wybierz ocenę</string>
-    <string name="DescriptionTextView">Wpisz Opis</string>
+    <string name="GradeTextView"><b>Wybierz ocenę</b></string>
+    <string name="DescriptionTextView"><b>Wpisz Opis</b></string>
     <string name="DescriptionHint">Opis</string>
     <string name="AproveButton">Potwierdź</string>
     <string-array name="SpinnerNumbers">
@@ -32,7 +32,7 @@
 
     <!-- Grade View -->
     <string name="GradeViewStudentTitle">Student</string>
-    <string name="GradeViewGoBackButton">Powrót</string>
+    <string name="GradeViewDescription">Opis</string>
     <!-- One row student list -->
     <string name="ShowGradesStudentButton">Oceny</string>
 

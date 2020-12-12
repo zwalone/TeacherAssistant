@@ -11,6 +11,8 @@
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:text="TextView" />
 
     <TextView
@@ -18,6 +20,8 @@
         android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:textColor="#000000"
+        android:textSize="20sp"
         android:text="TextView" />
 
     <Button
@@ -26,5 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="@string/AddGradeButton"
-        android:textSize="12sp" />
+        android:background="@drawable/gradient_button"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
 </LinearLayout>
