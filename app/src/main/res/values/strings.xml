@@ -13,6 +13,40 @@
     <string name="NameStudentHint">Name</string>
     <string name="SurnameStudentHint">Surname</string>
 
+    <!--ADD Edit Course -->
+    <string name="AEditCourseTextView">Add / Edit course</string>
+    <string name="NameCourseHit">course name</string>
+
+    <!--ADD Grade  -->
+    <string name="GradeTextView">Wybierz ocenę</string>
+    <string name="DescriptionTextView">Wpisz Opis</string>
+    <string name="DescriptionHint">Opis</string>
+    <string name="AproveButton">Potwierdź</string>
+    <string-array name="SpinnerNumbers">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <!-- Grade View -->
+    <string name="GradeViewStudentTitle">Student</string>
+    <string name="GradeViewGoBackButton">Powrót</string>
     <!-- One row student list -->
     <string name="ShowGradesStudentButton">Grades</string>
+
+    <!--One row courses list -->
+    <string name="ShowStudentsButton">students</string>
+
+    <!--One row student course-->
+    <string name="AddGradeButton">Add Grade</string>
+
+    <!--One row add student to course -->
+    <string name="AddStudentToCourseButton">Add</string>
+
+    <!--One row grade view -->
+    <string name="ShowDetailsGrade">Pokaż</string>
+
+
 </resources>

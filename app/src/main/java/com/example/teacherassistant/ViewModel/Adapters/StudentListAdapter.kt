@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherassistant.Model.Student
@@ -16,12 +17,8 @@ import kotlinx.android.synthetic.main.student_one_row.view.*
 
 class StudentListAdapter(var students: LiveData<List<Student>>, val OnStudentClick: CallBackStudentInterface)
     :RecyclerView.Adapter<StudentListAdapter.StudentHolder>() {
-    private lateinit var mStudentVM: StudentVM
 
-    //inner class StudentHolder(view: View):RecyclerView.ViewHolder(view)
-    class StudentHolder(view: View):RecyclerView.ViewHolder(view){
-
-    }
+    inner class StudentHolder(view: View):RecyclerView.ViewHolder(view)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentHolder {
         val view = LayoutInflater.from(parent.context)
@@ -38,7 +35,10 @@ class StudentListAdapter(var students: LiveData<List<Student>>, val OnStudentCli
         holder.itemView.OneRowStudentListId.text = students.value?.get(position)?.ids.toString()
         holder.itemView.OneRowStudentListName.text = students.value?.get(position)?.name.toString()
         holder.itemView.OneRowStudentListSurname.text = students.value?.get(position)?.surname.toString()
-
+        holder.itemView.ShowGradesButton.setOnClickListener { view ->
+            OnStudentClick.onStudentClick(students.value!!.get(position))
+            view.findNavController().navigate(R.id.action_listStudents_to_studentGradesList)
+        }
         holder.itemView.setOnClickListener {
             OnStudentClick.onStudentClick(students.value!![position])
         }

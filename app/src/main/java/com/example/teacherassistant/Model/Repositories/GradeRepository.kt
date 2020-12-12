@@ -4,12 +4,33 @@ import androidx.lifecycle.LiveData
 import com.example.teacherassistant.Model.Dao.GradeDao
 import com.example.teacherassistant.Model.Grade
 import com.example.teacherassistant.Model.Student
+import com.example.teacherassistant.Model.StudentGrade
+import com.example.teacherassistant.Model.StudentGradeCourse
+import java.util.*
 
 
 //VALIDACJA
 class GradeRepository(private val gradeDao: GradeDao) {
 
     val getAllGrades:LiveData<List<Grade>> = gradeDao.getAllGrades()
+    var getAllTodaysgrades: LiveData<List<StudentGrade>>
+    lateinit var getAllStudentGrade: LiveData<List<StudentGradeCourse>>
+
+    init {
+        val time = Calendar.getInstance()
+        time.time = Date()
+        time[Calendar.HOUR_OF_DAY] = 0
+        time[Calendar.MINUTE] = 0
+        time[Calendar.SECOND] = 0
+        time[Calendar.MILLISECOND] = 0
+        val begin = Date(time.timeInMillis)
+        time[Calendar.HOUR_OF_DAY] = 23
+        time[Calendar.MINUTE] = 59
+        time[Calendar.SECOND] = 59
+        time[Calendar.MILLISECOND] = 999
+        val end = Date(time.timeInMillis)
+        getAllTodaysgrades = gradeDao.getTodayGrade(today = begin, dayBefore = end)
+    }
 
     suspend fun addGrade(grade: Grade){
         gradeDao.insertGrade(grade)
@@ -21,11 +42,11 @@ class GradeRepository(private val gradeDao: GradeDao) {
         gradeDao.updateGrade(grade)
     }
 
-    fun getTodayGrades(){
-        gradeDao.getTodayGrade()
+    fun getTodayGrades(today: Date, dayBefore: Date){
+        gradeDao.getTodayGrade(today, dayBefore)
     }
 
     fun getStudentsGrade(student: Student){
-        gradeDao.getStudentGrades(student.ids)
+        getAllStudentGrade = gradeDao.getStudentGrades(student.ids)
     }
 }

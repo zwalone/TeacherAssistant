@@ -7,7 +7,7 @@ import com.example.teacherassistant.Model.Course
 @Dao
 interface CourseDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCourse(course: Course)
 
     @Delete

@@ -15,6 +15,7 @@ class StudentVM(application: Application):AndroidViewModel(application) {
     val readAllStudents: LiveData<List<Student>>
     private val repository: StudentRepository
     var currentStudent: Student? = null
+    lateinit var StudentID: Student
 
     init {
         val studentDao = AssistantDatabase.getDatabase(application).studentDao()
@@ -36,10 +37,9 @@ class StudentVM(application: Application):AndroidViewModel(application) {
             repository.updateStudent(student)
         }
     }
-    fun getStudentById(ids: Int){
-        viewModelScope.launch {
-            repository.getStudentById(ids)
+    fun getStudentById(ids: Int?) {
+        if(ids != null) {
+            StudentID = repository.getStudentById(ids)
         }
     }
-
 }

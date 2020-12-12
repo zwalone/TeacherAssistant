@@ -2,12 +2,10 @@ package com.example.teacherassistant.View
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -32,15 +30,15 @@ class StudentAddEdit : Fragment() {
 
         //student view
         if(mStudentAddEditVM.currentStudent != null){
-            Log.v("student", "textChanged")
+            //change text in current
             view.EditStudentName.setText(mStudentAddEditVM.currentStudent!!.name)
             view.EditStudentSurname.setText(mStudentAddEditVM.currentStudent!!.surname)
         }
 
-        view.floatingAddButton.setOnClickListener {
+        view.floatingAddStudentButton.setOnClickListener {
             InsertStudentToDatabase()
         }
-        view.floatingUpdateButton.setOnClickListener {
+        view.floatingUpdateStudentButton.setOnClickListener {
             UpdateStudentToDatabase()
         }
         return view
@@ -83,6 +81,6 @@ class StudentAddEdit : Fragment() {
     }
 
     fun InputCheck(name: String, surname: String): Boolean{
-        return !(TextUtils.isEmpty(name) && TextUtils.isEmpty((surname)))
+        return !(TextUtils.isEmpty(name) && TextUtils.isEmpty(surname))
     }
 }

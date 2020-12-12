@@ -37,10 +37,11 @@ class ListStudents : Fragment(), CallBackStudentInterface {
         myLayoutManager = LinearLayoutManager(context)
         myAdapter = StudentListAdapter(mStudentVM.readAllStudents, this)
 
-        mStudentVM.readAllStudents.observe(viewLifecycleOwner, Observer { t->
+        mStudentVM.readAllStudents.observe(viewLifecycleOwner, Observer {
             myAdapter.notifyDataSetChanged()
         })
 
+        //Buttons
         view.RemoveStudentButton.setOnClickListener {
             mStudentVM.removeStudent()
         }

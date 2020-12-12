@@ -6,38 +6,31 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/OneRowGradeIntTextView"
-        android:layout_width="13dp"
+        android:id="@+id/OneRowNumSC"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/OneRowGradeNameTextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/OneRowNameSC"
+        android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView" />
 
     <TextView
-        android:id="@+id/OneRowGradeSurnameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/OneRowGradeCourseName"
-        android:layout_width="wrap_content"
+        android:id="@+id/OneRowSurnameSC"
+        android:layout_width="145dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="TextView" />
 
     <Button
-        android:id="@+id/ShowDetailsButton"
+        android:id="@+id/OneRowAddGradeSC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/ShowDetailsGrade" />
-
+        android:text="@string/AddGradeButton"
+        android:textSize="12sp" />
 </LinearLayout>

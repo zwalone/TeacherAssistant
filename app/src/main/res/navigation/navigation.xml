@@ -24,7 +24,14 @@
         android:id="@+id/listCourses"
         android:name="com.example.teacherassistant.View.ListCourses"
         android:label="fragment_list_courses"
-        tools:layout="@layout/fragment_list_courses" />
+        tools:layout="@layout/fragment_list_courses" >
+        <action
+            android:id="@+id/action_listCourses_to_courseAddEdit"
+            app:destination="@id/courseAddEdit" />
+        <action
+            android:id="@+id/action_listCourses_to_studentCourseList"
+            app:destination="@id/studentCourseList" />
+    </fragment>
     <fragment
         android:id="@+id/listStudents"
         android:name="com.example.teacherassistant.View.ListStudents"
@@ -33,6 +40,9 @@
         <action
             android:id="@+id/action_listStudents_to_studentAddEdit"
             app:destination="@id/studentAddEdit" />
+        <action
+            android:id="@+id/action_listStudents_to_studentGradesList"
+            app:destination="@id/studentGradesList" />
     </fragment>
     <fragment
         android:id="@+id/studentAddEdit"
@@ -47,5 +57,62 @@
         android:id="@+id/listGrades"
         android:name="com.example.teacherassistant.View.ListGrades"
         android:label="fragment_list_grades"
-        tools:layout="@layout/fragment_list_grades" />
+        tools:layout="@layout/fragment_list_grades" >
+        <action
+            android:id="@+id/action_listGrades_to_viewGrade"
+            app:destination="@id/viewGrade" />
+    </fragment>
+    <fragment
+        android:id="@+id/courseAddEdit"
+        android:name="com.example.teacherassistant.View.CourseAddEdit"
+        android:label="fragment_course_add_edit"
+        tools:layout="@layout/fragment_course_add_edit" >
+        <action
+            android:id="@+id/action_courseAddEdit_to_listCourses"
+            app:destination="@id/listCourses" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentCourseList"
+        android:name="com.example.teacherassistant.View.StudentCourseList"
+        android:label="fragment_student_course_list"
+        tools:layout="@layout/fragment_student_course_list" >
+        <action
+            android:id="@+id/action_studentCourseList_to_addStudentToCourseList"
+            app:destination="@id/addStudentToCourseList" />
+        <action
+            android:id="@+id/action_studentCourseList_to_addGrade"
+            app:destination="@id/addGrade" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStudentToCourseList"
+        android:name="com.example.teacherassistant.View.AddStudentToCourseList"
+        android:label="fragment_add_student_to_course_list"
+        tools:layout="@layout/fragment_add_student_to_course_list" />
+    <fragment
+        android:id="@+id/addGrade"
+        android:name="com.example.teacherassistant.View.AddGrade"
+        android:label="fragment_add_grade"
+        tools:layout="@layout/fragment_add_grade" >
+        <action
+            android:id="@+id/action_addGrade_to_studentCourseList"
+            app:destination="@id/studentCourseList" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewGrade"
+        android:name="com.example.teacherassistant.View.ViewGrade"
+        android:label="fragment_view_grade"
+        tools:layout="@layout/fragment_view_grade" >
+        <action
+            android:id="@+id/action_viewGrade_to_listGrades"
+            app:destination="@id/listGrades" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentGradesList"
+        android:name="com.example.teacherassistant.View.StudentGradesList"
+        android:label="fragment_student_grades_list"
+        tools:layout="@layout/fragment_student_grades_list" >
+        <action
+            android:id="@+id/action_studentGradesList_to_viewGrade"
+            app:destination="@id/viewGrade" />
+    </fragment>
 </navigation>

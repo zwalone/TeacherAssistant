@@ -1,60 +1,80 @@
 package com.example.teacherassistant.View
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.teacherassistant.Model.Grade
 import com.example.teacherassistant.R
+import com.example.teacherassistant.ViewModel.FragmentVM.CourseVM
+import com.example.teacherassistant.ViewModel.FragmentVM.GradeVM
+import com.example.teacherassistant.ViewModel.FragmentVM.StudentCourseVM
+import com.example.teacherassistant.ViewModel.FragmentVM.StudentVM
+import kotlinx.android.synthetic.main.fragment_add_grade.*
+import kotlinx.android.synthetic.main.fragment_add_grade.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class AddGrade : Fragment(){
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AddGrade.newInstance] factory method to
- * create an instance of this fragment.
- */
-class AddGrade : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    var GradeNum: Int? = null;
+    private lateinit var mStudentCourse: StudentCourseVM
+    private lateinit var mCourse: CourseVM
+    private lateinit var mGrade: GradeVM
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_grade, container, false)
+        val view = inflater.inflate(R.layout.fragment_add_grade, container, false)
+
+        mStudentCourse = ViewModelProvider(requireActivity()).get(StudentCourseVM::class.java)
+        mCourse = ViewModelProvider(requireActivity()).get(CourseVM::class.java)
+        mGrade = ViewModelProvider(requireActivity()).get((GradeVM::class.java))
+
+        val spinner:Spinner = view.findViewById(R.id.NumbersSpinner)
+        ArrayAdapter.createFromResource(
+            view.context,
+            R.array.SpinnerNumbers,
+            android.R.layout.simple_spinner_item
+        ).also {  adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                GradeNum = parent.getItemAtPosition(position).toString().toInt()
+                Log.v("grade", GradeNum.toString())
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+        view.AproveGradeButton.setOnClickListener {
+            AddGrade()
+        }
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AddGrade.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AddGrade().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun AddGrade(){
+        if (GradeNum != null){
+            val text: String = DescriptionText.text.toString()
+            val date: Date = Date()
+            mGrade.insertGrade(Grade(student_id = mStudentCourse.currentStudent!!.ids,
+                course_id = mCourse.currentCourse!!.idc, grade = GradeNum!!, description = text, date = date ))
+
+            view?.findNavController()?.navigate(R.id.action_addGrade_to_studentCourseList)
+        }else{
+            Toast.makeText(requireContext(),"Select Mark", Toast.LENGTH_LONG).show()
+        }
     }
 }
