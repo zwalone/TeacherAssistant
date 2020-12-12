@@ -30,18 +30,16 @@ class ListStudents : Fragment(), CallBackStudentInterface {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list_students, container, false)
 
         mStudentVM = ViewModelProvider(requireActivity()).get(StudentVM::class.java)
         myLayoutManager = LinearLayoutManager(context)
         myAdapter = StudentListAdapter(mStudentVM.readAllStudents, this)
 
-        mStudentVM.readAllStudents.observe(viewLifecycleOwner, Observer {
+        mStudentVM.readAllStudents.observe(viewLifecycleOwner, Observer { t ->
             myAdapter.notifyDataSetChanged()
         })
 
-        //Buttons
         view.RemoveStudentButton.setOnClickListener {
             mStudentVM.removeStudent()
         }
@@ -63,6 +61,5 @@ class ListStudents : Fragment(), CallBackStudentInterface {
 
     override fun onStudentClick(student: Student) {
         mStudentVM.currentStudent = student
-        Log.v("student", student.ids.toString())
     }
 }

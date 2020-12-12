@@ -1,20 +1,14 @@
 package com.example.teacherassistant.ViewModel.Adapters
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.LiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teacherassistant.Model.Grade
-import com.example.teacherassistant.Model.Student
 import com.example.teacherassistant.Model.StudentGrade
 import com.example.teacherassistant.R
-import com.example.teacherassistant.View.ListGrades
 import com.example.teacherassistant.ViewModel.CallBackStudentGradeInterface
-import com.example.teacherassistant.ViewModel.CallBackStudentInterface
-import com.example.teacherassistant.ViewModel.FragmentVM.StudentVM
 import kotlinx.android.synthetic.main.grade_one_row.view.*
 
 class GradesAdapter(var grades: LiveData<List<StudentGrade>>,

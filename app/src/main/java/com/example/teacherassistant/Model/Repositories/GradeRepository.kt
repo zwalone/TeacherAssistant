@@ -8,8 +8,6 @@ import com.example.teacherassistant.Model.StudentGrade
 import com.example.teacherassistant.Model.StudentGradeCourse
 import java.util.*
 
-
-//VALIDACJA
 class GradeRepository(private val gradeDao: GradeDao) {
 
     val getAllGrades:LiveData<List<Grade>> = gradeDao.getAllGrades()
@@ -37,13 +35,6 @@ class GradeRepository(private val gradeDao: GradeDao) {
     }
     suspend fun removeGrade(grade: Grade){
         gradeDao.deleteGrade(grade)
-    }
-    suspend fun updateGrade(grade: Grade){
-        gradeDao.updateGrade(grade)
-    }
-
-    fun getTodayGrades(today: Date, dayBefore: Date){
-        gradeDao.getTodayGrade(today, dayBefore)
     }
 
     fun getStudentsGrade(student: Student){

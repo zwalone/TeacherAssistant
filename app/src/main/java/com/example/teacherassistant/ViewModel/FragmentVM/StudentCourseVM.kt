@@ -23,12 +23,6 @@ class StudentCourseVM(application: Application): AndroidViewModel(application) {
         repository = StudentCourseRepository(studentcoursedao)
     }
 
-    fun insertStudentCourseCrossRef(idc: Int, ids: Int){
-        viewModelScope.launch {
-            repository.addStudentCourseCrossRef(StudentCourseCrossRef(ids, idc))
-        }
-    }
-
     fun removeStudentCourseCrossRef(){
         if(currentStudent != null && currentCourse != null) {
             val cross: StudentCourseCrossRef =
@@ -38,17 +32,6 @@ class StudentCourseVM(application: Application): AndroidViewModel(application) {
             }
         }
 
-    }
-    fun getStudentsofCourse(course: Course){
-        viewModelScope.launch {
-            repository.getStudentsOfCourse(course)
-        }
-    }
-
-    fun getCoursesOfStudent(student: Student){
-        viewModelScope.launch {
-            repository.getCoursesOfStudent(student)
-        }
     }
 
     fun getSsOC(course: Course?){

@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import com.example.teacherassistant.Model.Course
 import com.example.teacherassistant.Model.Dao.CourseDao
 
-//VALIDACJA
 class CourseRepository(private val courseDao: CourseDao) {
     val getAllCourses: LiveData<List<Course>> = courseDao.allCourses()
 

@@ -35,9 +35,4 @@ class CourseVM(application: Application):AndroidViewModel(application) {
             repository.updateCourse(course)
         }
     }
-    fun getCourseById(idc: Int){
-        viewModelScope.launch {
-            repository.getCourseById(idc)
-        }
-    }
 }

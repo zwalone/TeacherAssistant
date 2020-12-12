@@ -34,7 +34,7 @@
     <string name="GradeViewStudentTitle">Student</string>
     <string name="GradeViewGoBackButton">Powrót</string>
     <!-- One row student list -->
-    <string name="ShowGradesStudentButton">Grades</string>
+    <string name="ShowGradesStudentButton">Oceny</string>
 
     <!--One row courses list -->
     <string name="ShowStudentsButton">students</string>

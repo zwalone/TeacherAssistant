@@ -5,20 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentPagerAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherassistant.Model.StudentGrade
 import com.example.teacherassistant.R
-import com.example.teacherassistant.ViewModel.Adapters.GradesAdapter
 import com.example.teacherassistant.ViewModel.Adapters.StudentsGradesAdapter
 import com.example.teacherassistant.ViewModel.CallBackStudentGradeInterface
 import com.example.teacherassistant.ViewModel.FragmentVM.GradeVM
 import com.example.teacherassistant.ViewModel.FragmentVM.StudentVM
-import kotlinx.android.synthetic.main.fragment_list_grades.*
 import kotlinx.android.synthetic.main.fragment_student_grades_list.*
+import kotlinx.android.synthetic.main.fragment_student_grades_list.view.*
 
 class StudentGradesList : Fragment(), CallBackStudentGradeInterface {
 
@@ -32,7 +30,6 @@ class StudentGradesList : Fragment(), CallBackStudentGradeInterface {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_student_grades_list, container, false)
 
         mGrade = ViewModelProvider(requireActivity()).get(GradeVM::class.java)
@@ -47,6 +44,9 @@ class StudentGradesList : Fragment(), CallBackStudentGradeInterface {
             myAdapter.notifyDataSetChanged()
         })
 
+        view.RemoveGradeButton.setOnClickListener{
+            mGrade.deleteGrade(mGrade.currentGrade)
+        }
         return view
     }
 

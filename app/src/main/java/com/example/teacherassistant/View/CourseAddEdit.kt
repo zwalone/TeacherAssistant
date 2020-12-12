@@ -14,7 +14,6 @@ import com.example.teacherassistant.R
 import com.example.teacherassistant.ViewModel.FragmentVM.CourseVM
 import kotlinx.android.synthetic.main.fragment_course_add_edit.*
 import kotlinx.android.synthetic.main.fragment_course_add_edit.view.*
-import kotlinx.android.synthetic.main.fragment_student_add_edit.*
 
 class CourseAddEdit : Fragment() {
 
@@ -23,16 +22,14 @@ class CourseAddEdit : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         val view = inflater.inflate(R.layout.fragment_course_add_edit, container, false)
 
         mCourseVM = ViewModelProvider(requireActivity()).get(CourseVM::class.java)
-        //course view
         if(mCourseVM.currentCourse != null){
             view.EditCourseName.setText(mCourseVM.currentCourse!!.name)
         }
 
-        //button
         view.floatingAddCourseButton.setOnClickListener {
             InsertCourseToDatabase()
         }
@@ -46,15 +43,10 @@ class CourseAddEdit : Fragment() {
     fun InsertCourseToDatabase(){
         val name = EditCourseName.text.toString()
         if(InputCheck(name)){
-            //create course
             val course = Course(name = name)
-            //add to database
             mCourseVM.addCourse(course)
-            //Toast report
             Toast.makeText(requireContext(), "Added", Toast.LENGTH_LONG).show()
-            //current course = null
             mCourseVM.currentCourse = null
-            //navigate back
             findNavController().navigate(R.id.action_courseAddEdit_to_listCourses)
         }else{
             Toast.makeText(requireContext(), "Text field is empty", Toast.LENGTH_LONG).show()
@@ -63,13 +55,9 @@ class CourseAddEdit : Fragment() {
 
     fun UpdateCourseToDatabase(){
         if(mCourseVM.currentCourse != null){
-            //Set Data to current course
             mCourseVM.currentCourse!!.name = EditCourseName.text.toString()
-            //update student
             mCourseVM.updateCourse(mCourseVM.currentCourse!!)
-            //current student = null
             mCourseVM.currentCourse = null
-            //navigate back
             findNavController().navigate(R.id.action_courseAddEdit_to_listCourses)
         }else{
             Toast.makeText(requireContext(), "Course must be selected", Toast.LENGTH_LONG).show()

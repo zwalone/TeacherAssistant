@@ -15,19 +15,15 @@ class StartMenu : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_start_menu, container, false)
 
-        //Go to courses fragment
         view.GTCoursesButton.setOnClickListener {
             findNavController().navigate(R.id.action_startMenu_to_listCourses)
         }
 
-        //Go to students fragment
         view.GTStudentsButton.setOnClickListener {
             findNavController().navigate(R.id.action_startMenu_to_listStudents)
         }
-        //Go to report fragment
         view.GTRaportButton.setOnClickListener {
             findNavController().navigate(R.id.action_startMenu_to_listGrades)
         }

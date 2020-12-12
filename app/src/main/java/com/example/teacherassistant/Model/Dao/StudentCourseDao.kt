@@ -2,10 +2,8 @@ package com.example.teacherassistant.Model.Dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.teacherassistant.Model.CourseWithStudents
 import com.example.teacherassistant.Model.Student
 import com.example.teacherassistant.Model.StudentCourseCrossRef
-import com.example.teacherassistant.Model.StudentWithCourses
 
 @Dao
 interface StudentCourseDao {
@@ -23,7 +21,4 @@ interface StudentCourseDao {
     @Query("SELECT Student.ids, Student.name , Student.surname  FROM Student left join StudentCourseCrossRef on Student.ids = StudentCourseCrossRef.ids where StudentCourseCrossRef.idc is null  or StudentCourseCrossRef.idc !=:course_id")
     fun getStudentsOutOfCourse(course_id: Int): LiveData<List<Student>>
 
-    @Transaction
-    @Query("SELECT * FROM Student WHERE  ids =:student_id")
-    fun getCoursesOfStudent(student_id: Int): LiveData<List<StudentWithCourses>>
 }

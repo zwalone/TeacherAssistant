@@ -8,14 +8,12 @@ import com.example.teacherassistant.Model.AssistantDatabase
 import com.example.teacherassistant.Model.Repositories.StudentRepository
 import com.example.teacherassistant.Model.Student
 import kotlinx.coroutines.launch
-import android.util.Log
 
 class StudentVM(application: Application):AndroidViewModel(application) {
 
     val readAllStudents: LiveData<List<Student>>
     private val repository: StudentRepository
     var currentStudent: Student? = null
-    lateinit var StudentID: Student
 
     init {
         val studentDao = AssistantDatabase.getDatabase(application).studentDao()
@@ -37,9 +35,5 @@ class StudentVM(application: Application):AndroidViewModel(application) {
             repository.updateStudent(student)
         }
     }
-    fun getStudentById(ids: Int?) {
-        if(ids != null) {
-            StudentID = repository.getStudentById(ids)
-        }
-    }
+
 }

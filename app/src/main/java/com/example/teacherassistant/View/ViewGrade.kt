@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.example.teacherassistant.R
 import com.example.teacherassistant.ViewModel.FragmentVM.GradeVM
 import kotlinx.android.synthetic.main.fragment_view_grade.view.*
@@ -19,7 +18,6 @@ class ViewGrade : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_view_grade, container, false)
 
         mGrade = ViewModelProvider(requireActivity()).get(GradeVM::class.java)
@@ -29,9 +27,6 @@ class ViewGrade : Fragment() {
         view.GradeViewGradeInt.text = mGrade.currentStudentGrade?.grade?.grade.toString()
         view.GradeViewGradeDescription.text = mGrade.currentStudentGrade?.grade?.description.toString()
 
-        view.GradeViewGoBackButton.setOnClickListener {
-            view.findNavController().navigate(R.id.action_viewGrade_to_listGrades)
-        }
         return view
     }
 

@@ -31,7 +31,6 @@ class ListCourses : Fragment(), CallBackCourseInterface{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_list_courses, container, false)
 
         mCourseVM = ViewModelProvider(requireActivity()).get(CourseVM::class.java)
@@ -42,7 +41,6 @@ class ListCourses : Fragment(), CallBackCourseInterface{
             myAdapter.notifyDataSetChanged()
         })
 
-        //Buttons
         view.RemoveCourseButton.setOnClickListener {
             mCourseVM.removeCourse()
         }
@@ -61,7 +59,6 @@ class ListCourses : Fragment(), CallBackCourseInterface{
     }
     override fun onCourseClick(course: Course) {
         mCourseVM.currentCourse = course
-        Log.v("course", course.idc.toString())
     }
 
 }

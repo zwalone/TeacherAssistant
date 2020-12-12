@@ -1,14 +1,13 @@
 package com.example.teacherassistant.ViewModel.FragmentVM
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.teacherassistant.Model.*
 import com.example.teacherassistant.Model.Repositories.GradeRepository
-import com.example.teacherassistant.View.ListStudents
 import kotlinx.coroutines.launch
-import java.util.*
 
 class GradeVM(application: Application): AndroidViewModel(application) {
     val readAllGrades : LiveData<List<Grade>>
@@ -31,15 +30,13 @@ class GradeVM(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun deleteGrade(grade: Grade){
-        viewModelScope.launch {
-            repository.removeGrade(grade)
-        }
-    }
-
-    fun updateGrade(grade: Grade){
-        viewModelScope.launch {
-            repository.updateGrade(grade)
+    fun deleteGrade(grade: Grade?){
+        if(grade != null){
+            viewModelScope.launch {
+                repository.removeGrade(grade)
+            }
+        }else{
+            Toast.makeText(getApplication(),"Select grade", Toast.LENGTH_LONG).show()
         }
     }
 
